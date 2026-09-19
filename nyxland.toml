@@ -1,0 +1,14 @@
+# Nyxland Configuration File
+gaps = 8
+border_width = 2
+border_color_active = "#bd93f9"
+border_color_inactive = "#44475a"
+default_workspaces = 9
+
+ignored_classes = [
+    "Shell_TrayWnd",
+    "Windows.UI.Core.CoreWindow",
+    "Progman",
+    "WorkerW",
+    "TopLevelWindowForOverflowXamlIsland"
+]

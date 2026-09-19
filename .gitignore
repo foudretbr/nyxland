@@ -1,0 +1,20 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+
+# Compiled binaries and libraries
+*.exe
+*.dll
+*.pdb
+*.zip
+*.iso
+
+# Local VM setup archives and downloaded bins
+/scripts/OpenSSH-Win64/
+/scripts/OpenSSH-Win64.zip
+
+# Temporary and editor files
+temp.txt
+*.log
+.vscode/
+.idea/
