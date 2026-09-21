@@ -35,7 +35,22 @@ impl WindowManager {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    tracing_subscriber::fmt::init();
+    tracing_subscriber::fmt()
+        .with_env_filter(
+            tracing_subscriber::EnvFilter::try_from_default_env()
+                .unwrap_or_else(|_| tracing_subscriber::EnvFilter::new("info")),
+        )
+        .init();
+
+    println!("====================================================");
+    println!("  Nyxland Window Manager démarré avec succès !");
+    println!("  Raccourcis actifs :");
+    println!("    * Alt + Entrée     : Ouvrir un terminal");
+    println!("    * Alt + Shift + Q  : Fermer la fenêtre active");
+    println!("    * Alt + Shift + E  : Relancer Explorer");
+    println!("  Appuyez sur Ctrl + C pour quitter proprement.");
+    println!("====================================================");
+
     info!("Starting Nyxland Window Manager daemon...");
     
     let config = NyxConfig::default();

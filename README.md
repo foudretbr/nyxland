@@ -40,7 +40,7 @@ ignored_classes = [
 
 ## 🖥️ Environnement de Test en VM
 
-Tester un Window Manager directement sur la machine hôte peut capturer le focus ou figer l'explorateur en cours de dev.  
+Tester un Window Manager directement sur la machine hôte peut capturer le focus ou figer l'explorateur en cours de dev.
 Le dossier de stockage pour votre VM Windows a été préparé dans :
 `D:\Logiciel ou VM  etc\VMs\Windows_Dev`
 

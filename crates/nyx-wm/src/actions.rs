@@ -4,9 +4,12 @@
 //! ou aux messages IPC (lancement de terminal, fermeture de fenêtre, etc.).
 
 use tracing::{info, error, warn};
+use std::os::windows::process::CommandExt;
 use std::process::Command;
 use windows::Win32::Foundation::{LPARAM, WPARAM};
 use windows::Win32::UI::WindowsAndMessaging::{GetForegroundWindow, PostMessageW, WM_CLOSE};
+
+const CREATE_NEW_CONSOLE: u32 = 0x00000010;
 
 /// Démarre un terminal Windows en utilisant une stratégie de repli (*fallback*).
 ///
@@ -33,7 +36,12 @@ pub fn spawn_terminal() -> Result<(), std::io::Error> {
     let mut last_error = None;
 
     for &cmd in &candidates {
-        match Command::new(cmd).spawn() {
+        let mut command = Command::new(cmd);
+        if cmd != "wt.exe" {
+            command.creation_flags(CREATE_NEW_CONSOLE);
+        }
+
+        match command.spawn() {
             Ok(_) => {
                 info!("Terminal lancé avec succés : {}", cmd);
                 return Ok(());
